@@ -1,0 +1,102 @@
+import feedparser
+
+news_scraper= open("news_scraper.txt", "w",encoding='utf-8')
+linkler=[
+"http://www.anayurtgazetesi.com/sondakika.xml",
+"http://www.acikgazete.com/feed",
+"http://www.ajanshaber.com/rss",
+"http://www.aktifhaber.com/rss",
+"http://aljazeera.com.tr/rss.xml",
+"http://feeds.feedburner.com/amerikabulteni",
+"http://www.ankarareview.com/feed",
+"https://www.aydinbuyuksehir.com/rss.xml",
+"https://www.aydinpost.com/rss/",
+"http://www.sesgazetesi.com.tr/rss",
+"http://www.aygazete.com/rss/gundem-haberleri",
+"http://www.basnews.com/index.php/tr/detail/content/195-basnews-tr?format=feed&type=rss",
+"http://www.baskahaber.org/feeds/posts/default",
+"http://www.bbc.co.uk/turkce/index.xml",
+"http://www.bianet.org/bianet.rss",
+"http://www.canlihaber.com/rss/",
+"http://www.dipnot.tv/feed/",
+"http://www.diken.com.tr/feed/",
+"http://www.ensonhaber.com/rss/ensonhaber.xml",
+"http://www.eurovizyon.co.uk/rss.php",
+"http://www.f5haber.com/rss/haberler.xml",
+"https://www.futbolsayfasi.net/feed",
+"http://www.gazeteduvar.com.tr/feed",
+"http://gazetekarinca.com/feed",
+"https://www.gazetenehaber.com/rss",
+"http://www.gazeteci.tv/rss.xml",
+"http://www.gazeteciler.com/sondakika.rss",
+"https://www.gencduyu.com/rss",
+"http://www.girisimhaber.com/rss.xml",
+"http://grihat.com.tr/rss/",
+"https://www.habererk.com/rss",
+"http://www.haberdar.com/rss",
+"http://www.haberasir.com/rss.xml",
+"https://haberetimesgut.com/feed/",
+"http://www.haberturk.com/rss",
+"http://www.haberyudum.com/rss",
+"http://www.habervaktim.com/sondakika.xml",
+"http://rss.haberler.com/rss.asp?kategori=sondakika",
+"http://www.habertakva.com/rss.php",
+"http://www.haberx.com/haberx.rss",
+"http://sondakika.haber7.com/sondakika.rss",
+"http://www.halkinhabercisi.com/feed",
+"http://inadinahaber.org/feed",
+"http://www.internethaber.com/rss/last_min.xml",
+"http://www.kampushaber.com/rss.xml",
+"http://www.karsigazete.com.tr/rss.php",
+"http://kayseriolay.com/rss.php",
+"https://www.magazinburada.net/rss",
+"http://www.mansethaber.com/rss.xml",
+"http://www.medyapusula.com/rss.xml",
+"https://seninmedyan.org/feed",
+"http://millirefleks.com/rss.xml",
+"http://www.mynet.com/haber/rss/son-dakika",
+"http://www.nationalturk.com/feed",
+"https://www.newstr.net/feed/",
+"https://noktanokta.net/feed/",
+"http://www.objektifhaber.com/sondakika.rss",
+"http://www.odatv.com/rss.php",
+"http://www.pirha.net/feed",
+"http://www.presshaber.com/feed",
+"http://www.pressturk.com/rss.xml",
+"http://www.radikal.com.tr/d/rss/RssSD.xml",
+"http://www.rotahaber.com/rss",
+"https://www.rumico.com.tr/feed/",
+"http://siyasihaber.org/feed",
+"http://haber.sol.org.tr/rss.xml",
+"http://rss.sondakika.com/rss_standart.asp",
+"http://sonsoz.com.tr/feed/",
+"http://www.spothaber.com/rss",
+"http://tr.sputniknews.com/export/rss2/archive/index.xml",
+"https://superkulup.com/feed",
+"http://www.taraftarhaber.com/rss.xml",
+"https://www.teknoxhaber.com/feed/",
+"http://www.turizmekstra.com/rss.xml",
+"http://www.turkiyehaberajansi.com/rss.xml",
+"https://www.urfayazar.com/sitemap.xml",
+"http://www.ulkehaber.com/rss/sondakika.xml",
+"http://www.gazetevatan.com/rss/gundem.xml",
+"http://www.ydh.com.tr/rss.xml",
+"http://ispartamhaber.com/rss",
+"https://cinedb.com.tr/rss/haber.xml",
+"https://limangazete.tr.gg/",
+]
+
+for c in linkler:
+    x=0
+    url=(c)
+    haberler=feedparser.parse(url)
+    for i in haberler.entries:
+        x+=1
+        news_scraper.write(str(x)+".haber"+"\n")
+        news_scraper.write(str(i.published)+"\n")
+        news_scraper.write("link:"+str(i.link)+"\n")
+
+        news_scraper.write("title:"+str(i.title) + "\n")
+
+        news_scraper.write("description:"+str(i.description)+"\n")
+news_scraper.close()
